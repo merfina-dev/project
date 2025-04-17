@@ -1,0 +1,135 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "John Doe",
+      "email": "john@example.com",
+      "password": "123456",
+      "role": "job_seeker"
+    },
+    {
+      "id": 100,
+      "name": "Admin",
+      "email": "admin@dreamhire.com",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "fullName": "Company Admin",
+      "email": "admin@example.com",
+      "password": "admin123",
+      "role": "employer",
+      "company": "QSW Info-Tech"
+    },
+    {
+      "id": 3,
+      "fullName": "Merfina",
+      "email": "merfina@gmail.com",
+      "password": "Merfina",
+      "role": "employer",
+      "company": "Alo-Infotech"
+    },
+    {
+      "id": 4,
+      "fullName": "subins",
+      "email": "subinram17@gmail.com",
+      "password": "12345",
+      "role": "job_seeker"
+    },
+    {
+      "id": 5,
+      "fullName": "Sherjin",
+      "email": "sherjin@gmail.com",
+      "password": "Sherjin",
+      "role": "job_seeker"
+    },
+    {
+      "id": 6,
+      "fullName": "Abi",
+      "email": "abi@gmail.com",
+      "password": "Abi",
+      "role": "job_seeker",
+      "company": ""
+    },
+    {
+      "id": 7,
+      "fullName": "Samir",
+      "email": "samir@gmail.com",
+      "password": "Samir",
+      "role": "employer",
+      "company": "Additi Info-tech"
+    },
+    {
+      "id": 8,
+      "fullName": "Ajay",
+      "email": "ajay@gmail.com",
+      "password": "Ajay",
+      "role": "employer",
+      "company": "Ozhore Technology"
+    },
+    {
+      "id": 10,
+      "fullName": "Sam",
+      "email": "sam@gmail.com",
+      "password": "Sam",
+      "role": "employer",
+      "company": "SM Technologies"
+    },
+    {
+      "id": 11,
+      "fullName": "Shena",
+      "email": "shena@gmail.com",
+      "password": "Shena",
+      "role": "job_seeker",
+      "company": ""
+    }
+  ],
+  "jobs": [
+    {
+      "title": "Frontend Developer",
+      "location": "Nagercoil",
+      "type": "Full-time",
+      "salary": "1.2 LPA",
+      "company": "Alo-Infotech",
+      "vacancies": "10",
+      "employerId": 3,
+      "id": "eb77"
+    },
+    {
+      "id": "f549",
+      "title": "Assistant Developer",
+      "company": "Axiom Technology",
+      "salary": "1 LPA",
+      "location": "Chennai",
+      "type": "Full-time",
+      "employerId": 2
+    },
+    {
+      "id": "1f05",
+      "title": "Backend Developer",
+      "company": "Additi Info-tech",
+      "location": "Madurai",
+      "type": "Full-time",
+      "salary": "2.3 LPA",
+      "employerId": 7
+    }
+  ],
+  "applications": [
+    {
+      "id": "d70d",
+      "jobId": "eb77",
+      "jobTitle": "Frontend Developer",
+      "company": "Alo-Infotech",
+      "applicantName": "Sherjin",
+      "email": "sherjin@gmail.com",
+      "phone": "0123456789",
+      "qualification": "B.E. - Mechanical Engineering",
+      "skills": [
+        "react.js"
+      ],
+      "resumeName": "Merfinank.resume.docx",
+      "appliedAt": "2025-04-16T06:17:29.587Z"
+    }
+  ]
+}
