@@ -64,9 +64,9 @@ export const Register = () => {
 
       login(response.data); // Auto-login after registration
       if (formData.role.toLowerCase() === 'job_seeker') {
-        navigate("/jobposting");
-      } else {
         navigate("/joblisting");
+      } else {
+        navigate("/jobposting");
       }
     } catch (err) {
       console.error("Registration failed:", err);
