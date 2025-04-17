@@ -1,15 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Box,
-  Typography,
-  TextField,
-  Button,
-  CircularProgress,
-  Card,
-  CardContent,
-  Grid,
-  Container
-} from '@mui/material';
+import { Box, Typography, TextField, Button, CircularProgress, Card, CardContent, Grid, Container} from '@mui/material';
 import axios from 'axios';
 import Image1 from '../Images/background.webp';
 
@@ -24,6 +14,11 @@ export const JobPosting = () => {
     salary: '',
     vacancies: ''
   });
+
+  const [selectedJobId, setSelectedJobId] = useState(null);
+  const [applicants, setApplicants] = useState([]);
+  const [loadingApplicants, setLoadingApplicants] = useState(false);
+
 
   const [editingJobId, setEditingJobId] = useState(null);
 
@@ -49,6 +44,20 @@ export const JobPosting = () => {
       }));
     }
   }, [employer?.id]);
+
+  const fetchApplicants = async (jobId) => {
+    setLoadingApplicants(true);
+    try {
+      const res = await axios.get(`http://localhost:5000/applications?jobId=${jobId}`);
+      setApplicants(res.data);
+      setSelectedJobId(jobId);
+    } catch (error) {
+      console.error('Error fetching applicants:', error);
+    } finally {
+      setLoadingApplicants(false);
+    }
+  };
+  
 
   const handleChange = (e) => {
     setNewJob({ ...newJob, [e.target.name]: e.target.value });
@@ -106,23 +115,13 @@ export const JobPosting = () => {
 
   return (
     <Box
-      sx={{
-        minHeight: '100vh',
-        width: '100%',
-        backgroundImage: `url(${Image1})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        overflowX: 'hidden'
-      }}
-    >
+      sx={{ minHeight: '100vh', width: '100%', backgroundImage: `url(${Image1})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', overflowX: 'hidden' }}>
       <Container maxWidth="lg" sx={{ py: 4 }}>
         {employer?.company && (
           <Typography variant="h4" gutterBottom sx={{mt:5, textAlign: 'center', fontWeight: 'bold', mb: 2 }}>
             {employer.company}
           </Typography>
         )}
-
         <Box mb={4} p={4} border="1px solid " borderRadius={2} mt={5} >
           <Typography variant="h6" gutterBottom>Post a New Job</Typography>
           <Grid container spacing={2}>
@@ -194,7 +193,6 @@ export const JobPosting = () => {
             </Grid>
           </Grid>
         </Box>
-
         <Grid container mt={5} spacing={4} justifyContent="center">
           {loading ? (
             <Box display="flex" justifyContent="center" mt={5}>
@@ -218,9 +216,33 @@ export const JobPosting = () => {
                       <Button variant="outlined" size="small" color="error" onClick={() => handleDeleteJob(job.id)}>
                         Delete
                       </Button>
+                      <Button variant="outlined" size="small" onClick={() => fetchApplicants(job.id)}>
+                        View Applicants
+                      </Button>
                     </Box>
                   </CardContent>
                 </Card>
+                {selectedJobId === job.id && (
+                  <Box mt={2}>
+                    {loadingApplicants ? (
+                      <CircularProgress />
+                    ) : applicants.length === 0 ? (
+                      <Typography>No applicants found for this job.</Typography>
+                    ) : (
+                      applicants.map((applicant) => (
+                        <Card key={applicant.id} sx={{ mb: 1 }}>
+                          <CardContent>
+                            <Typography variant="subtitle1">Name: {applicant.applicantName}</Typography>
+                            <Typography variant="body2">Email: {applicant.email}</Typography>
+                            <Typography variant="body2">Phone.No.: {applicant.phone}</Typography>
+                            <Typography variant="body2">Qualification: {applicant.qualification}</Typography>
+                            <Typography variant="body2">Skills: {applicant.skills}</Typography>
+                          </CardContent>
+                        </Card>
+                      ))
+                    )}
+                  </Box>
+                )}
               </Grid>
             ))
           )}
